@@ -18,7 +18,7 @@ namespace Catalog.API.Data
             // This is a feature of ASP.Net Core application.
             // At compile time, if asp.net core see a IConfiguration object in the constructor it will create an instance of that case for us.
             var client = new MongoClient(configuration.GetValue<string>("DatabaseSettings:ConnectionString"));
-            var database = client.GetDatabase(configuration.GetValue<string>("DatabaseSettings:ProductDb"));
+            var database = client.GetDatabase(configuration.GetValue<string>("DatabaseSettings:DatabaseName"));
             Products = database.GetCollection<Product>(configuration.GetValue<string>("DatabaseSettings:CollectionName"));
             CatalogContextSeed.SeedData(Products);
         }
